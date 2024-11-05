@@ -1,15 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { IoCartOutline } from "react-icons/io5";
+import { FaRegHeart } from "react-icons/fa";
 
 const Navbar = () => {
 
     const lists = <>
-    <li><NavLink to='/'>Home</NavLink></li>
-    <li><NavLink to='/Statistics'>Statistics</NavLink></li>
-    <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+        <li><NavLink className='mr-12' to='/'>Home</NavLink></li>
+        <li><NavLink className='mr-12' to='/Statistics'>Statistics</NavLink></li>
+        <li><NavLink className='mr-12' to='/dashboard'>Dashboard</NavLink></li>
     </>
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-200">
             <div className="navbar-start">
                 <div className="dropdown lg:hidden">
                     <div tabIndex={0} role="button" className="btn bg-purple-600 text-white md:hidden">
@@ -40,7 +42,12 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <button className="btn btn-ghost btn-circle">
+                <IoCartOutline />
+                </button>
+                <button className="btn btn-ghost btn-circle">
+                <FaRegHeart />
+                </button>
             </div>
         </div>
     );
