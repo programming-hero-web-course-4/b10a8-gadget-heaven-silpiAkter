@@ -4,6 +4,7 @@ import { MdStar } from "react-icons/md";
 import { MdStarBorder } from "react-icons/md";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa6";
+import { addToCart, addToWish } from '../../utility/addToCart';
 
 const ProductDetailes = () => {
     const {productId} = useParams();
@@ -15,6 +16,14 @@ const ProductDetailes = () => {
     console.log(data, product, productId, id);
     
     const { product_title, price, product_image, description, specification, availability, rating } = product;
+
+    const handleAddToCart = () => {
+        addToCart(productId, price)
+    }
+
+    const handleAddToWishList = () => {
+        addToWish(productId);
+    }
 
     return (
         <div className=''>
@@ -44,8 +53,8 @@ const ProductDetailes = () => {
                         </span>
                     </p>
                     <div className='flex items-center gap-6'>
-                    <button className='flex items-center gap-4 bg-[#9538E2] text-white mt-4 py-3 px-6 rounded-full'>Add To Cart <BsCart3 /></button>
-                    <button className='mt-4 p-4 border rounded-full text-xl'><FaRegHeart /></button>
+                    <button onClick={handleAddToCart} className='flex items-center gap-4 bg-[#9538E2] text-white mt-4 py-3 px-6 rounded-full'>Add To Cart <BsCart3 /></button>
+                    <button onClick={handleAddToWishList} className='mt-4 p-4 border rounded-full text-xl'><FaRegHeart /></button>
                     </div>
                 </div>
                 <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-2xl">
