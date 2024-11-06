@@ -15,6 +15,7 @@ const addToCart = (id, price) => {
     localStorage.setItem('product-price', storedStr);
 
     const cart = storedCart.find(item => item.id === id);
+    
     // if(!cart){
     //     storedCart.push({id, price});
         

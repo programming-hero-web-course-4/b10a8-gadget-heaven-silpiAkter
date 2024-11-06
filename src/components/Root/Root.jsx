@@ -4,11 +4,6 @@ import Footer from '../Footer/Footer';
 import { Outlet, useLocation } from 'react-router-dom';
 
 const Root = () => {
-    // let loaction = useLocation();
-
-    // React.useEffect(() => {
-    //     ga('send', 'pageview');
-    // }, [loaction]);
 
     return (
         <div>

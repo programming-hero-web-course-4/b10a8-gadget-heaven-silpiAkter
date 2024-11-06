@@ -10,13 +10,6 @@ const AddToCart = ({addToCart}) => {
 
             {
                 addToCart.map((cart, idx) => <Cart key={idx} cart={cart}></Cart>)
-
-                // selectedPlayer.map(select => <Select 
-                //     key={select.id} 
-                //     handleRemove={handleRemove} 
-                //     redusePlayerPrice={redusePlayerPrice} 
-                //     select={select}
-                // ></Select>)
             }
             
             <div className="py-12">

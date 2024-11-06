@@ -1,7 +1,9 @@
 import React from 'react';
 import { MdDeleteForever } from "react-icons/md";
+import { useParams } from 'react-router-dom';
 
 const Cart = ({ cart }) => {
+    const carts = useParams();
     const { product_title, price, product_image, description } = cart;
     return (
         <div>
