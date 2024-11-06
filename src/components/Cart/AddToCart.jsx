@@ -11,9 +11,6 @@ const AddToCart = ({addToCart}) => {
             {
                 addToCart.map((cart, idx) => <Cart key={idx} cart={cart}></Cart>)
             }
-            
-            <div className="py-12">
-            </div>
             </div>
         </div>
     );

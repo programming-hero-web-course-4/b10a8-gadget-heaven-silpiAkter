@@ -10,6 +10,7 @@ const Navbar = () => {
         <li><NavLink className='mr-12' to='/statistics'>Statistics</NavLink></li>
         <li><NavLink className='mr-12' to='/dashboard'>Dashboard</NavLink></li>
         <li><NavLink className='mr-12' to='/about'>About Us</NavLink></li>
+        <li><NavLink className='mr-12' to='/listedGadgets'>New Cart</NavLink></li>
     </>
     return (
         <div>

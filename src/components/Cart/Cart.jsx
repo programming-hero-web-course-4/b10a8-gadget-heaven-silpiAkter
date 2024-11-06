@@ -2,18 +2,18 @@ import React from 'react';
 import { MdDeleteForever } from "react-icons/md";
 import { useParams } from 'react-router-dom';
 
-const Cart = ({ cart }) => {
-    const carts = useParams();
-    const { product_title, price, product_image, description } = cart;
+const Cart = () => {
+    // const data = useParams();
+    // const { product_title, price, product_image, description } = cart;
     return (
         <div>
             <div className='flex justify-between'>
                 <h2 className='text-2xl, font-bold'>Cart</h2>
                 <div className='flex items-center gap-4'>
                     <div>
-                        <p className='text-2xl, font-bold text-center'>Total Price: ${cart.reduce((acc, product) => acc + product.price, 0)}</p>
+                        {/* <p className='text-2xl, font-bold text-center'>Total Price: ${cart.reduce((acc, product) => acc + product.price, 0)}</p> */}
                     </div>
-                    <button onClick={() => handleIsActive()} className='border border-[#9538E2] text-[#9538E2] font-bold rounded-full py-3 px-6'>Short by Price</button>
+                    <button  className='border border-[#9538E2] text-[#9538E2] font-bold rounded-full py-3 px-6'>Short by Price</button>
                     <button className='bg-[#9538E2] font-bold rounded-full py-3 px-6 text-white'>Purchase</button>
                 </div>
             </div>

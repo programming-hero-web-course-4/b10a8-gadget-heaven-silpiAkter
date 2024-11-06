@@ -17,6 +17,7 @@ import Cart from './components/Cart/Cart.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import AboutUs from './components/About/AboutUs.jsx';
 import AddToCart from './components/Cart/AddToCart.jsx';
+import ListedGadgets from './components/ListedGadgets/ListedGadgets.jsx';
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,13 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />,
-        loader: () => fetch('/gadgets.json')
+        loader: () => fetch('/gadgets.json'),
+        // children: [
+        //   {
+        //     path: 'addToCart',
+        //     element: <AddToCart></AddToCart>,
+        //   },
+        // ]
       },
       {
         path: '/about',
@@ -53,8 +60,9 @@ const router = createBrowserRouter([
         loader: () => fetch('/gadgets.json')
       },
       {
-        path: 'addToCart',
-        element: <AddToCart></AddToCart>
+        path: '/listedGadgets',
+        element: <ListedGadgets></ListedGadgets>,
+        loader: () => ('../gadgets,json')
       }
     ]
   },

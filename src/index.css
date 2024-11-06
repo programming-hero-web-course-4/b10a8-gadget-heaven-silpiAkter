@@ -7,3 +7,15 @@
 body{
     font-family: "Sora", sans-serif;
 }
+
+.tab:focus{
+    border-radius: 50px;
+    color: #9538E3;
+
+    
+}
+/* .react-tabs__tab--selected{
+    border-radius: 50px;
+    color: #9538E3;
+    
+} */

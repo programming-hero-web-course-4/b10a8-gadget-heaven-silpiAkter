@@ -10,7 +10,7 @@ const Product = ({ product }) => {
             <figure>
                 <img
                     src={product_image}
-                    className='rounded-xl w-full max-h-[181px]'
+                    className='rounded-xl w-[340px] max-h-[181px]'
                     alt="Shoes" />
             </figure>
             <div className="card-body">
