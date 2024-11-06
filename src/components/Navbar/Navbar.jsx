@@ -7,14 +7,15 @@ const Navbar = () => {
 
     const lists = <>
         <li><NavLink className='mr-12' to='/'>Home</NavLink></li>
-        <li><NavLink className='mr-12' to='/Statistics'>Statistics</NavLink></li>
+        <li><NavLink className='mr-12' to='/statistics'>Statistics</NavLink></li>
         <li><NavLink className='mr-12' to='/dashboard'>Dashboard</NavLink></li>
+        <li><NavLink className='mr-12' to='/about'>About Us</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-200">
             <div className="navbar-start">
                 <div className="dropdown lg:hidden">
-                    <div tabIndex={0} role="button" className="btn bg-purple-600 text-white md:hidden">
+                    <div tabIndex={0} role="button" className="btn bg-[#9538E2] text-white md:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5"

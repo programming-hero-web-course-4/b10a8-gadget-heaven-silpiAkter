@@ -13,6 +13,9 @@ import ErrorPage from './components/ErrorPage/ErrorPage.jsx';
 import Home from './components/Home/Home.jsx';
 import Dashboard from './components/Dashboard/Dashboard.jsx';
 import ProductDetailes from './components/ProductDetailes/ProductDetailes.jsx';
+import Cart from './components/Cart/Cart.jsx';
+import Statistics from './components/Statistics/Statistics.jsx';
+import AboutUs from './components/About/AboutUs.jsx';
 
 
 const router = createBrowserRouter([
@@ -31,8 +34,22 @@ const router = createBrowserRouter([
         loader: () => fetch('/gadgets.json')
       },
       {
+        path: '/statistics',
+        element: <Statistics></Statistics>
+      },
+      {
         path: '/dashboard',
-        element: <Dashboard />
+        element: <Dashboard />,
+        loader: () => fetch('/gadgets.json')
+      },
+      {
+        path: '/about',
+        element: <AboutUs></AboutUs>
+      },
+      {
+        path: '/cart/:cartId',
+        element: <Cart></Cart>,
+        loader: () => fetch('/gadgets.json')
       },
     ]
   },

@@ -3,7 +3,7 @@ import bannerIMG from '../../assets/banner.jpg'
 
 const Banner = () => {
     return (
-        <div className="hero bg-purple-700 min-h-[694px] flex flex-col">
+        <div className="hero bg-[#9538E2] min-h-[694px] max-w-[1540px] mx-auto flex flex-col rounded-2xl">
             <div className="hero-content text-center lg:max-w-[1120px]">
                 <div className="py-12">
                     <h1 className="text-5xl font-bold text-white leading-snug">Upgrade Your Tech Accessorize with Gadget Heaven Accessories</h1>

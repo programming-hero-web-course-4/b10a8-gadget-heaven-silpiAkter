@@ -5,6 +5,7 @@ import { MdStarBorder } from "react-icons/md";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa6";
 import { addToCart, addToWish } from '../../utility/addToCart';
+import AddToCart from '../Cart/AddToCart';
 
 const ProductDetailes = () => {
     const {productId} = useParams();
@@ -13,12 +14,13 @@ const ProductDetailes = () => {
     const data = useLoaderData();
 
     const product = data.find(product => product.product_id === productId)
-    console.log(data, product, productId, id);
+    // console.log(data, product, productId, id);
     
     const { product_title, price, product_image, description, specification, availability, rating } = product;
 
     const handleAddToCart = () => {
         addToCart(productId, price)
+        
     }
 
     const handleAddToWishList = () => {
@@ -27,7 +29,7 @@ const ProductDetailes = () => {
 
     return (
         <div className=''>
-            <div className='bg-[#9538E2] py-8 h-[463px]'>
+            <div className='bg-[#9538E2] py-8 w-[100vw] h-[463px]'>
                 <h2 className='text-[2rem] text-white font-bold text-center mb-4'>Product Details</h2>
                 <p className='text-white font-normal text-base text-center lg:w-[796px] mx-auto'>Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!</p>
             </div>
@@ -54,7 +56,7 @@ const ProductDetailes = () => {
                     </p>
                     <div className='flex items-center gap-6'>
                     <button onClick={handleAddToCart} className='flex items-center gap-4 bg-[#9538E2] text-white mt-4 py-3 px-6 rounded-full'>Add To Cart <BsCart3 /></button>
-                    <button onClick={handleAddToWishList} className='mt-4 p-4 border rounded-full text-xl'><FaRegHeart /></button>
+                    <button onClick={() => handleAddToWishList((addToCart, idx) => <AddToCart key={idx} addToCart={addToCart} ></AddToCart>)} className='mt-4 p-4 border rounded-full text-xl'><FaRegHeart /></button>
                     </div>
                 </div>
                 <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-2xl">

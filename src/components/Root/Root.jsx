@@ -11,8 +11,10 @@ const Root = () => {
     // }, [loaction]);
 
     return (
-        <div className='max-w-7xl mx-auto'>
+        <div>
+            <div className='max-w-7xl mx-auto'>
             <Navbar />
+            </div>
             <div className='min-h-[1064px]'>
                 <Outlet />
             </div>
