@@ -16,8 +16,9 @@ import ProductDetailes from './components/ProductDetailes/ProductDetailes.jsx';
 import Cart from './components/Cart/Cart.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import AboutUs from './components/About/AboutUs.jsx';
-import AddToCart from './components/Cart/AddToCart.jsx';
-import ListedGadgets from './components/ListedGadgets/ListedGadgets.jsx';
+import Product from './components/Product/Product.jsx';
+import Categories from './components/Categoties/Categories.jsx';
+import AllProducts from './components/AllProducts/AllProducts.jsx';
 
 
 const router = createBrowserRouter([
@@ -30,10 +31,15 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />
       },
+      // {
+      //   path: '/allproduct',
+      //   element: <AllProducts></AllProducts>,
+      //   loader: () => fetch('/gadgets.json')
+      // },
       {
-        path: 'allproducts/:productId',
+        path: 'allproducts/:product_id',
         element: <ProductDetailes></ProductDetailes>,
-        loader: () => fetch('/gadgets.json')
+        loader: () => fetch('../gadgets.json')
       },
       {
         path: '/statistics',
@@ -43,12 +49,7 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <Dashboard />,
         loader: () => fetch('/gadgets.json'),
-        // children: [
-        //   {
-        //     path: 'addToCart',
-        //     element: <AddToCart></AddToCart>,
-        //   },
-        // ]
+
       },
       {
         path: '/about',
@@ -60,10 +61,17 @@ const router = createBrowserRouter([
         loader: () => fetch('/gadgets.json')
       },
       {
-        path: '/listedGadgets',
-        element: <ListedGadgets></ListedGadgets>,
-        loader: () => ('../gadgets,json')
-      }
+
+      },
+      {
+        path: '/product/:categoty',
+        element: <Product></Product>
+      },
+      // {
+      //   path: '/category/:categoryName',
+      //   element: <Categories></Categories>,
+      //   loader: () => fetch('/categories.json')
+      // }
     ]
   },
 ]);

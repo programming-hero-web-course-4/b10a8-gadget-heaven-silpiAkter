@@ -1,10 +1,15 @@
 import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation} from 'react-router-dom';
 
 const Root = () => {
+    const location = useLocation();
+    const getTitle = () => {
+        switch(location.pathname){
 
+        }
+    }
     return (
         <div>
             <div className='max-w-7xl mx-auto'>

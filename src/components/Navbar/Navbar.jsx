@@ -2,15 +2,15 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
+import logo from '../../assets/favicon-16x16.png'
 
 const Navbar = () => {
 
     const lists = <>
-        <li><NavLink role='nav' className={({isActive}) => `nav mr-12 ${isActive ? "active" : ""}`} to='/'>Home</NavLink></li>
-        <li><NavLink className='mr-12' to='/statistics'>Statistics</NavLink></li>
-        <li><NavLink className='mr-12' to='/dashboard'>Dashboard</NavLink></li>
-        <li><NavLink className='mr-12' to='/about'>About Us</NavLink></li>
-        <li><NavLink className='mr-12' to='/listedGadgets'>New Cart</NavLink></li>
+        <li><NavLink role='nav' className={({isActive}) => `nav ${isActive ? "active" : ""}`} to='/'>Home</NavLink></li>
+        <li><NavLink className='ml-12' to='/statistics'>Statistics</NavLink></li>
+        <li><NavLink className='ml-12' to='/dashboard'>Dashboard</NavLink></li>
+        <li><NavLink className='ml-12' to='/about'>About Us</NavLink></li>
     </>
     return (
         <div>
@@ -37,7 +37,10 @@ const Navbar = () => {
                             {lists}
                         </ul>
                     </div>
-                    <a className="font-bold text-xl ml-1 md:text-3xl">Gadget Heaven</a>
+                    <div className='flex items-center'>
+                        <img src={logo} className='mr-2 h-10 w-10' alt="logo" />
+                        <a className="font-bold text-xl ml-1 md:text-3xl">Gadget Heaven</a>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">

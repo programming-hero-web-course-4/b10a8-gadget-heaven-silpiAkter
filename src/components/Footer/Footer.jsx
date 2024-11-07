@@ -2,7 +2,11 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="footer text-white p-10 justify-around">
+        <footer className="mt-8 bg-white py-24">
+            <h2 className='text-[2rem] font-bold text-center'>Gadget Heaven</h2>
+            <p className='text-base text-center font-bold text-black/40'>Leading the way in cutting-edge technology and innovation.</p>
+            <div className="divider max-w-7xl mx-auto py-6"></div>
+            <div className="footer text-white pt-8 justify-around">
             <nav>
                 <h6 className="footer-title font-bold text-lg text-black">Services</h6>
                 <a className="link link-hover text-black/60 font-normal text-base">Product Support</a>
@@ -23,6 +27,7 @@ const Footer = () => {
                 <a className="link link-hover text-black/60 font-normal text-base">Privacy policy</a>
                 <a className="link link-hover text-black/60 font-normal text-base">Cookie policy</a>
             </nav>
+            </div>
         </footer>       
     );
 };

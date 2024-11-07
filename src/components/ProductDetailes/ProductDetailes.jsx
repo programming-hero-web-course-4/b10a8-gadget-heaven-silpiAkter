@@ -5,26 +5,27 @@ import { MdStarBorder } from "react-icons/md";
 import { BsCart3 } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa6";
 import { addToCart, addToWish } from '../../utility/addToCart';
-import AddToCart from '../Cart/AddToCart';
 
 const ProductDetailes = () => {
-    const {productId} = useParams();
-    const id = parseInt(productId)
-
+    const {product_id} = useParams();
     const data = useLoaderData();
 
-    const product = data.find(product => product.product_id === productId)
-    // console.log(data, product, productId, id);
+    const product = data?.find(product => String(product.product_id) === product_id)
+
+    if(!product){
+        return 'Not available';
+    }
     
     const { product_title, price, product_image, description, specification, availability, rating } = product;
 
     const handleAddToCart = () => {
-        addToCart(productId, price)
+        addToCart(product_id, price);
         
     }
 
     const handleAddToWishList = () => {
-        addToWish(productId);
+        addToWish(product_id);
+
     }
 
     return (
@@ -56,7 +57,7 @@ const ProductDetailes = () => {
                     </p>
                     <div className='flex items-center gap-6'>
                     <button onClick={handleAddToCart} className='flex items-center gap-4 bg-[#9538E2] text-white mt-4 py-3 px-6 rounded-full'>Add To Cart <BsCart3 /></button>
-                    <button onClick={() => handleAddToWishList((addToCart, idx) => <AddToCart key={idx} addToCart={addToCart} ></AddToCart>)} className='mt-4 p-4 border rounded-full text-xl'><FaRegHeart /></button>
+                    <button onClick={handleAddToWishList} className='mt-4 p-4 border rounded-full text-xl'><FaRegHeart /></button>
                     </div>
                 </div>
                 <div className="card bg-base-200 w-full max-w-sm shrink-0 shadow-2xl">

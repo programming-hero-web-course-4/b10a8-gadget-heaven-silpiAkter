@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
-const Categories = ({categories}) => {
-    const [categories, setCategories] = useState()
-
-    useEffect(() => {
-        fetch('/gadgetsByCategory.json')
-        .then(res => res.json())
-        .then(data => setCategories(data))
-    }, []);
+const Categories = ({category}) => {
 
     return (
-        <div className='w-[240px] max-h-[556px] shadow-lg rounded-lg p-6'>
-            {
-                categories.map(category => (<Link key={category.category} to='product'></Link>))
-            }        
+        <div >
+            <div className=' flex justify-between items-center mb-3'>
+                {category}
+            </div>
         </div>
     );
 };

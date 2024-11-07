@@ -1,49 +1,92 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import { getStoredToCart, getStoredToWish } from '../../utility/addToCart';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { getStoredToCart, getStoredToWish, setToStoredCart } from '../../utility/addToCart';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Product from '../Product/Product';
-// import 'react-tabs/style/react-tabs.css';
+import Cart from '../Cart/Cart';
+import { BsFillPatchCheckFill } from "react-icons/bs";
 
 const Dashboard = () => {
   const [cart, setCart] = useState([]);
   const [wishlist, setWishlist] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const allproducts = useLoaderData();
+  const navigate = useNavigate();
+
+  const calculatePrice = (cart) => {
+    return cart.reduce((pp, product) => pp + product.price, 0);
+  };
 
   useEffect(() => {
     const storedCart = getStoredToCart();
     const storedWishlist = getStoredToWish();
 
-    console.log(storedCart, allproducts,);
+    console.log('store cart id', storedCart)
+    console.log('store wishlist id',storedWishlist)
 
-    const cart = allproducts.filter(product => storedCart.includes(product.product_id));
+    const cartItem = allproducts.filter(product => storedCart.some(cartItem => cartItem.id === String(product.product_id)));
 
-    const wishlist = allproducts.filter(product => storedWishlist.includes(product.product_id));
+    console.log('cart item', cartItem )
 
-    // const totalPrice = cart.reduce((acc, product) => {
-    //   const cartItem = storedCart.find(item => item.id === product.product_id);
-    //   return acc + (cartItem ? cartItem.price : 0)
-    // }, 0);
+    const wishlistItem = allproducts.filter(product => storedWishlist.includes(String(product.product_id)));
 
-    setCart(cart);
-    setWishlist(wishlist);
-    // console.log('total price:', totalPrice) allproducts
+    setCart(cartItem);
+    setWishlist(wishlistItem);
+    setTotalPrice(calculatePrice(cartItem));
+
   }, []);
 
-  // const [addPrice, setAddPricce] = useState(0);
-  // const price = 0;
+  const handlePurchase = () => {
+    setIsModalOpen(true);
+  }
 
-  // const handleAddPrice = () => {
-  //     setAddPricce((prevAddPrice) => prevAddPrice + price);  
-  // }
+  const confirmPurchase = () => {
+    setCart([]);
+    localStorage.removeItem('cart');
+    setTotalPrice(0);
+    setIsModalOpen(false);
+    navigate('/')
+  }
 
-  // const redusePrice = (price) => {
-  //     const purches = addPrice - addPrice;
-  //     setAddPricce(purches);
-  // }
+  const handleSortByPrice = () => {
+    const sortedCart = [...cart].sort((a, b) => b.price - a.price);
+    setCart(sortedCart);
+  }
 
+  const handleRemoveCart = (productId) => {
+    const updateCart = cart.filter(product => product.product_id !== productId);
+    setCart(updateCart);
+    setTotalPrice(calculatePrice(updateCart));
+    setToStoredCart(updateCart);
+
+  }
+
+  const handleRemoveWishlist = (productId) => {
+    const update = wishlist.filter(product => product.product_id !== productId);
+    setWishlist(update);
+
+  }
+
+
+
+  const Modal = ({ onConfirm }) => {
+    return (
+      <div className="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="modal-content bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+          <BsFillPatchCheckFill className='text-center mx-auto text-5xl text-teal-400 mb-4' />
+          <h2 className="text-xl text-center font-bold mb-4">Payment Successful</h2>
+          <p className='text-center'>Thanks for purchasing.</p>
+          <p className='text-center'>Total: ${totalPrice}</p>
+          <div className="flex justify-center gap-4 mt-6">
+            <button onClick={onConfirm} className="py-2 px-4 bg-[#9538E2] text-white rounded">Cancel</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
-    <div>
+    <div className='min-h-[100vh]'>
       <div className='bg-[#9538E2] py-8 h-[260px]'>
         <h2 className='text-[2rem] text-white font-bold text-center mb-4'>Dashboard</h2>
         <p className='text-white font-normal text-base text-center lg:w-[796px] mx-auto'>Explore the latest gadgets that will take your experience to the next level. From smart devices to the coolest accessories, we have it all!</p>
@@ -64,30 +107,39 @@ const Dashboard = () => {
                   <h2 className='text-2xl font-bold'>Cart</h2>
                   <div className='flex items-center gap-4'>
                     <div>
-                      {/* <p className='text-2xl, font-bold text-center'>Total Price: ${totalPrice}</p> */}
+                      <p className='text-2xl, font-bold text-center'>Total Price: ${totalPrice}</p>
                     </div>
-                    {/* <button onClick={() => handleIsActive()} className='border border-[#9538E2] text-[#9538E2] font-bold rounded-full py-3 px-6'>Short by Price</button> */}
-                    <button className='bg-[#9538E2] font-bold rounded-full py-3 px-6 text-white'>Purchase</button>
+
+                    <button onClick={handleSortByPrice} className='border border-[#9538E2] text-[#9538E2] font-bold rounded-full py-3 px-6'>Short by Price</button>
+
+                    <button onClick={handlePurchase} className='bg-[#9538E2] font-bold rounded-full py-3 px-6 text-white'>Purchase</button>
                   </div>
                 </div>
               </div>
-              <div className='flex gap-6 py-12'>
+              <div className=' gap-6 py-12'>
                 {
-                  cart.map((product) => <Product key={product.product_id} product={product}></Product>)
+                  // cart.map((product) => <Product key={product.product_id} product={product}></Product>)
+                  cart.map(product => <Cart key={product.product_id} product={product} onRemove={handleRemoveCart}></Cart>)
                 }
               </div>
             </TabPanel>
             <TabPanel className="mt-20 max-w-7xl mx-auto">
               <h2 className='text-2xl font-bold'>Wishlist</h2>
-              <div className='flex flex-row gap-6 py-12'>
+              <div className='gap-6 py-12'>
                 {
-                  wishlist.map(product => <Product key={product.product_id} product={product}></Product>)
+                  wishlist.map(product => <Cart key={product.product_id} product={product} onRemove={handleRemoveWishlist}></Cart>)
+                  // wishlist.map(product => <Product key={product.product_id} product={product}></Product>)
                 }
               </div>
             </TabPanel>
           </Tabs>
         </div>
       </div>
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(false)}
+          onConfirm={confirmPurchase}
+        ></Modal>
+      )}
     </div>
   );
 };

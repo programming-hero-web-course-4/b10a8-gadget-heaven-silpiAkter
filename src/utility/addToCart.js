@@ -1,6 +1,8 @@
+import { toast } from "react-toastify";
+
 const getStoredToCart = () => {
-    const storedStr = localStorage.getItem('product-price');
-    if(storedStr){
+    const storedStr = localStorage.getItem('product-cart');
+    if (storedStr) {
         const storedCart = JSON.parse(storedStr);
         return storedCart;
     }
@@ -8,24 +10,46 @@ const getStoredToCart = () => {
 
 }
 
+const setToStoredCart = (cart) => {
+    localStorage.setItem('product-cart', JSON.stringify(cart));
+}
+
 const addToCart = (id, price) => {
     const storedCart = getStoredToCart();
-    storedCart.push(id, price);
-    const storedStr = JSON.stringify(storedCart);
-    localStorage.setItem('product-price', storedStr);
 
-    const cart = storedCart.find(item => item.id === id);
+    if (storedCart.includes(id)) {
+        toast('Already added!');
+    }
+    else {
+        storedCart.push({id, price});
+        setToStoredCart(storedCart);
+        const storedStr = JSON.stringify(storedCart);
+        localStorage.setItem('product-cart', storedStr);
+
+        // const cart = storedCart.find(item => item.id === id);
+        toast('Successfully Add to cart!');
+    }
 
 }
 
 
+const removeFromCart = (productId) => {
+    let storedCart = getStoredToCart();
+    const updateCart = storedCart.filter(id => id !== productId);
+    localStorage.setItem('product-cart', JSON.stringify(updateCart));
+    setCart (cart.filter(product => product.product_id !== productId));
+    setTotalPrice(calculatedPrice(cart.filter(product => product.product_id !== productId)))
+    setToStoredCart(updateCart);
+}
+
+
 const getStoredToWish = () => {
-    const storedWishStr = localStorage.getItem('wish-list');
-    if(storedWishStr){
+    const storedWishStr = localStorage.getItem('wishlist');
+    if (storedWishStr) {
         const storedWish = JSON.parse(storedWishStr);
         return storedWish;
     }
-    else{
+    else {
         return [];
     }
 
@@ -34,21 +58,17 @@ const getStoredToWish = () => {
 const addToWish = (id) => {
     const storedWishList = getStoredToWish();
 
-    if(storedWishList.includes(id)){
-        console.log(id, 'already exists');
+    if (storedWishList.includes(id)) {
+        toast('Already exists!');
     }
-    else{
+    else {
         storedWishList.push(id);
         const storedStr = JSON.stringify(storedWishList);
-        localStorage.setItem('wish-list', storedStr);
-
+        localStorage.setItem('wishlist', storedStr);
+        toast('Add to wishlist!');
     }
-    
-
-    // toast('Successfully added');
 
 }
 
 
-
-export {addToCart, addToWish, getStoredToWish, getStoredToCart,};
+export { addToCart, addToWish, getStoredToWish, getStoredToCart, setToStoredCart, removeFromCart };

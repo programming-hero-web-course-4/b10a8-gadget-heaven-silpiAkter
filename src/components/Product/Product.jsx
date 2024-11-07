@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Product = ({ product }) => {
 
@@ -16,11 +16,13 @@ const Product = ({ product }) => {
             <div className="card-body">
                 <h2 className="card-title">{product_title}</h2>
                 <p>Price: {price}</p>
+
                 <Link to={`allproducts/${product_id}`}>
                 <div className="card-actions justify-start">
                     <button className="btn outline-[#9538E2] outline rounded-full font-semibold text-lg hover:bg-[#9538E2] hover:text-white">View Detailes</button>
                 </div>
                 </Link>
+
             </div>
         </div>
     );
