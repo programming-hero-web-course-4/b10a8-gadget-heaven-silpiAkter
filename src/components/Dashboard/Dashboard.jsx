@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { getStoredToCart, getStoredToWish, setToStoredCart } from '../../utility/addToCart';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Product from '../Product/Product';
 import Cart from '../Cart/Cart';
 import { BsFillPatchCheckFill } from "react-icons/bs";
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
   const [cart, setCart] = useState([]);
@@ -22,12 +22,7 @@ const Dashboard = () => {
     const storedCart = getStoredToCart();
     const storedWishlist = getStoredToWish();
 
-    console.log('store cart id', storedCart)
-    console.log('store wishlist id',storedWishlist)
-
     const cartItem = allproducts.filter(product => storedCart.some(cartItem => cartItem.id === String(product.product_id)));
-
-    console.log('cart item', cartItem )
 
     const wishlistItem = allproducts.filter(product => storedWishlist.includes(String(product.product_id)));
 
@@ -38,7 +33,9 @@ const Dashboard = () => {
   }, []);
 
   const handlePurchase = () => {
-    setIsModalOpen(true);
+    if(cart.length > 0 && totalPrice > 0){
+      setIsModalOpen(true);
+    }
   }
 
   const confirmPurchase = () => {
@@ -59,12 +56,14 @@ const Dashboard = () => {
     setCart(updateCart);
     setTotalPrice(calculatePrice(updateCart));
     setToStoredCart(updateCart);
+    toast('Removed from cart!')
 
   }
 
   const handleRemoveWishlist = (productId) => {
     const update = wishlist.filter(product => product.product_id !== productId);
     setWishlist(update);
+    toast('Removed from wishlist!')
 
   }
 
@@ -85,6 +84,8 @@ const Dashboard = () => {
       </div>
     );
   };
+
+
   return (
     <div className='min-h-[100vh]'>
       <div className='bg-[#9538E2] py-8 h-[260px]'>

@@ -1,19 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import logo from '../../assets/favicon-16x16.png'
 
 const Navbar = () => {
-
+    const location = useLocation();
+    const isHomeActive = location.pathname === '/';
     const lists = <>
-        <li><NavLink role='nav' className={({isActive}) => `nav ${isActive ? "active" : ""}`} to='/'>Home</NavLink></li>
-        <li><NavLink className='ml-12' to='/statistics'>Statistics</NavLink></li>
-        <li><NavLink className='ml-12' to='/dashboard'>Dashboard</NavLink></li>
-        <li><NavLink className='ml-12' to='/about'>About Us</NavLink></li>
+        <li><Link role='nav' className="" to='/'>Home</Link></li>
+        <li><Link className='ml-12' to='/statistics'>Statistics</Link></li>
+        <li><Link className='ml-12' to='/dashboard'>Dashboard</Link></li>
+        <li><Link className='ml-12' to='/about'>About Us</Link></li>
     </>
     return (
-        <div>
+        <nav className={` ${isHomeActive ? "bg-purple-600 text-white" : "bg-base-200 text-black/80"}`}>
             <div className="navbar bg-base-200">
                 <div className="navbar-start">
                     <div className="dropdown lg:hidden">
@@ -56,7 +57,7 @@ const Navbar = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </nav>
     );
 };
 

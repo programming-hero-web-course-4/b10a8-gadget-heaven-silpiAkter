@@ -17,8 +17,6 @@ import Cart from './components/Cart/Cart.jsx';
 import Statistics from './components/Statistics/Statistics.jsx';
 import AboutUs from './components/About/AboutUs.jsx';
 import Product from './components/Product/Product.jsx';
-import Categories from './components/Categoties/Categories.jsx';
-import AllProducts from './components/AllProducts/AllProducts.jsx';
 
 
 const router = createBrowserRouter([
@@ -31,11 +29,6 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home />
       },
-      // {
-      //   path: '/allproduct',
-      //   element: <AllProducts></AllProducts>,
-      //   loader: () => fetch('/gadgets.json')
-      // },
       {
         path: 'allproducts/:product_id',
         element: <ProductDetailes></ProductDetailes>,
@@ -66,12 +59,7 @@ const router = createBrowserRouter([
       {
         path: '/product/:categoty',
         element: <Product></Product>
-      },
-      // {
-      //   path: '/category/:categoryName',
-      //   element: <Categories></Categories>,
-      //   loader: () => fetch('/categories.json')
-      // }
+      }
     ]
   },
 ]);
