@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData, useSearchParams } from 'react-router-dom';
+import React from 'react';
+import { Link} from 'react-router-dom';
 
 const Product = ({ product }) => {
     const { product_id, product_image, product_title, price } = product;
@@ -18,7 +18,7 @@ const Product = ({ product }) => {
 
                 <Link to={`allproducts/${product_id}`}>
                 <div className="card-actions justify-start">
-                    <button className="btn outline-[#9538E2] outline rounded-full font-semibold text-lg hover:bg-[#9538E2] hover:text-white">View Detailes</button>
+                    <button className="btn outline-[#9538E2] outline rounded-full font-semibold text-lg hover:bg-[#9538E2] hover:text-white">View Details</button>
                 </div>
                 </Link>
 

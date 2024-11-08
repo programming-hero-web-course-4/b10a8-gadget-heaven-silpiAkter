@@ -1,5 +1,3 @@
-import { Link, useLoaderData } from 'react-router-dom';
-
 const Categories = ({category}) => {
 
     return (

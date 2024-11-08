@@ -26,7 +26,6 @@ const addToCart = (id, price) => {
         const storedStr = JSON.stringify(storedCart);
         localStorage.setItem('product-cart', storedStr);
 
-        // const cart = storedCart.find(item => item.id === id);
         toast('Successfully Add to cart!');
     }
 
