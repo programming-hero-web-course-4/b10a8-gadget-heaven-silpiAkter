@@ -119,7 +119,6 @@ const Dashboard = () => {
               </div>
               <div className=' gap-6 py-12'>
                 {
-                  // cart.map((product) => <Product key={product.product_id} product={product}></Product>)
                   cart.map(product => <Cart key={product.product_id} product={product} onRemove={handleRemoveCart}></Cart>)
                 }
               </div>
@@ -129,7 +128,6 @@ const Dashboard = () => {
               <div className='gap-6 py-12'>
                 {
                   wishlist.map(product => <Cart key={product.product_id} product={product} onRemove={handleRemoveWishlist}></Cart>)
-                  // wishlist.map(product => <Product key={product.product_id} product={product}></Product>)
                 }
               </div>
             </TabPanel>

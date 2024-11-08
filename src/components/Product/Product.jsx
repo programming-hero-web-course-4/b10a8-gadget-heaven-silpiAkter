@@ -1,8 +1,7 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLoaderData, useSearchParams } from 'react-router-dom';
 
 const Product = ({ product }) => {
-
     const { product_id, product_image, product_title, price } = product;
 
     return (

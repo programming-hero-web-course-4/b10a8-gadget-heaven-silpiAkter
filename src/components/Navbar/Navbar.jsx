@@ -5,17 +5,15 @@ import { FaRegHeart } from "react-icons/fa";
 import logo from '../../assets/favicon-16x16.png'
 
 const Navbar = () => {
-    const location = useLocation();
-    const isHomeActive = location.pathname === '/';
     const lists = <>
-        <li><Link role='nav' className="" to='/'>Home</Link></li>
-        <li><Link className='ml-12' to='/statistics'>Statistics</Link></li>
-        <li><Link className='ml-12' to='/dashboard'>Dashboard</Link></li>
-        <li><Link className='ml-12' to='/about'>About Us</Link></li>
+        <li><Link role='nav' className="font-bold" to='/'>Home</Link></li>
+        <li><Link className='ml-12 font-bold' to='/dashboard'>Dashboard</Link></li>
+        <li><Link className='ml-12 font-bold' to='/statistics'>Statistics</Link></li>
+        <li><Link className='ml-12 font-bold' to='/about'>About Us</Link></li>
     </>
     return (
-        <nav className={` ${isHomeActive ? "bg-purple-600 text-white" : "bg-base-200 text-black/80"}`}>
-            <div className="navbar bg-base-200">
+        <nav>
+            <div className="navbar py-6">
                 <div className="navbar-start">
                     <div className="dropdown lg:hidden">
                         <div tabIndex={0} role="button" className="btn bg-[#9538E2] text-white md:hidden">
@@ -48,11 +46,11 @@ const Navbar = () => {
                         {lists}
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <button className="btn btn-ghost btn-circle">
+                <div className="navbar-end gap-6">
+                    <button className="btn bg-white btn-circle text-2xl">
                         <IoCartOutline />
                     </button>
-                    <button className="btn btn-ghost btn-circle">
+                    <button className="btn bg-white btn-circle text-2xl">
                         <FaRegHeart />
                     </button>
                 </div>
